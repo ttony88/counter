@@ -1,0 +1,13 @@
+.button {
+    padding: 5px 15px;
+    background-color: rgb(146, 238, 41);
+    color: #444444;
+    font-size: 24px;
+    border-radius: 10px;
+    border: none;
+}
+
+.button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
