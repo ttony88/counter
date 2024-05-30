@@ -8,14 +8,15 @@ type CounterPropsType = {
     setCount: Dispatch<any>
     increment: () => void
     decriment: () => void
-    disabledIncrement: boolean
-    disabledDecrement: boolean
+    disabledButtonIncrement: boolean
+    disabledButtonDecrement: boolean
+    isMaxCount: boolean
 }
 
 export const Counter:FC<CounterPropsType> = (props) => {
 
     const styleDisplay = {
-        color: props.disabledIncrement ? 'red' : 'rgb(146, 238, 41)',
+        color: props.messageCount === 'incorect value' || props.isMaxCount  ? 'red' : 'rgb(146, 238, 41)',
         fontSize: props.messageCount ? 16 : 70,
     }
 
@@ -27,9 +28,9 @@ export const Counter:FC<CounterPropsType> = (props) => {
                 {valueCount}
             </div>
             <div className={style.buttons}>
-                <Button title='inc' onClickHandler={props.increment} disabled={props.disabledIncrement}/>
-                <Button title='reset' onClickHandler={props.decriment} disabled={props.disabledDecrement}/>
-                <Button title='set' onClickHandler={props.decriment} />
+                <Button title='inc' onClickHandler={props.increment} disabled={props.disabledButtonIncrement}/>
+                <Button title='reset' onClickHandler={props.decriment} disabled={props.disabledButtonDecrement}/>
+                {/* <Button title='set' onClickHandler={props.decriment} /> */}
             </div>
         </div>
     )
