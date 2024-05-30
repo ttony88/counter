@@ -4,6 +4,7 @@ import style from './Input.module.css'
 type InputProps = {
     title: string
     value: number
+    warning?: boolean
     onChangeInput: (value: number, setValue: (value: number) => void) => void
     onFocusInput: () => void
     onKeyEnter: () => void
@@ -23,7 +24,11 @@ export const Input:FC<InputProps> = (props) => {
         }
     }
 
-    
+    const inputBorderStyle = {
+        borderColor: props.warning ? 'red' : 'rgb(146, 238, 41)',
+        borderStyle: 'solid',
+        borderWidth: '3px'
+    }
     
     return(
         <div className={style.wrapper}>
@@ -31,6 +36,7 @@ export const Input:FC<InputProps> = (props) => {
                 {props.title}
             </span>
             <input type='number' 
+                   style={inputBorderStyle}
                    value={props.value} 
                    onChange={onChangeHandler}
                    onFocus={onFocusHandler}
