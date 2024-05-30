@@ -9,7 +9,9 @@
 }
 
 .input {
-    border: 3px solid rgb(146, 238, 41);
+    all: unset;
+    padding: 5px;
+    background-color: #fff;
     border-radius: 10px;
     text-align: center;
 }
