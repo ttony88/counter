@@ -21,19 +21,25 @@ function App() {
   
   const decriment = () => setCount(minValue)
 
-  const disabledIncrement = count >= maxValue || !!messageCount
+  const isMaxCount = count >= maxValue
 
-  const disabledDecrement = count <= minValue
+  const isMinCount = count <= minValue
+
+  const disabledButtonIncrement = isMaxCount || !!messageCount
+
+  const disabledButtonDecrement = isMinCount
 
   return (
     <div className={style.app}>
-      <Setting setCount={setCount} 
-              setMessageCount={setMessageCount}  />
+      <Setting setCount={setCount}
+               messageCount={messageCount}
+               setMessageCount={setMessageCount}  />
       <Counter count={count} setCount={setCount} 
-               messageCount={messageCount} 
+               messageCount={messageCount}
+               isMaxCount={isMaxCount} 
                increment={increment} decriment={decriment}
-               disabledIncrement={disabledIncrement}
-               disabledDecrement={disabledDecrement} />
+               disabledButtonIncrement={disabledButtonIncrement}
+               disabledButtonDecrement={disabledButtonDecrement} />
     </div>
   );
 }
