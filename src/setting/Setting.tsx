@@ -6,6 +6,7 @@ import { getFromLocalStoredgeValue } from '../util/localStorege'
 import useUpdateEffect from '../util/hooks'
 
 type SettingProps = {
+    messageCount: string
     setCount: Dispatch<any>
     setMessageCount: Dispatch<any>
 }
@@ -20,8 +21,11 @@ export const Setting:FC<SettingProps> = memo((props) => {
 
     const [disabled, setDisabled] = useState(true)
 
+    const warningInputMaxValue = maxValue <= minValue
+    const warningInputMinValue = minValue < 0 || warningInputMaxValue
+
     useUpdateEffect(() => {
-        if(minValue < 0 || maxValue <= minValue) {
+        if(warningInputMinValue) {
             props.setMessageCount('incorect value')
             setDisabled(true) 
             
@@ -52,12 +56,14 @@ export const Setting:FC<SettingProps> = memo((props) => {
         <div className={style.setting}>
             <div className={style.display}>
                 <Input title='max value' value={maxValue} 
+                       warning={warningInputMaxValue}
                        onChangeInput={onChangeInput} 
                        onFocusInput={onFocusHandler}
                        onKeyEnter={onClickHandlerSet}
                        setValue={setMaxValue} />
                 <Input title='start value' value={minValue} 
-                    onChangeInput={onChangeInput} 
+                       warning={warningInputMinValue}
+                       onChangeInput={onChangeInput} 
                        onFocusInput={onFocusHandler}
                        onKeyEnter={onClickHandlerSet}
                        setValue={setMinValue} />
